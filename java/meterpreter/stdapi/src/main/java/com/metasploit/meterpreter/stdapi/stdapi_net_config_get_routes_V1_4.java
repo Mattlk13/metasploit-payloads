@@ -7,11 +7,12 @@ import com.metasploit.meterpreter.Meterpreter;
 import com.metasploit.meterpreter.TLVPacket;
 import com.metasploit.meterpreter.TLVType;
 import com.metasploit.meterpreter.command.Command;
+import com.metasploit.meterpreter.command.CommandId;
 
 public class stdapi_net_config_get_routes_V1_4 extends stdapi_net_config_get_routes implements Command {
 
     public int execute(Meterpreter meterpreter, TLVPacket request, TLVPacket response) throws Exception {
-        stdapi_net_config_get_interfaces_V1_4 getIfaceCommand = (stdapi_net_config_get_interfaces_V1_4) meterpreter.getCommandManager().getCommand("stdapi_net_config_get_interfaces");
+        stdapi_net_config_get_interfaces_V1_4 getIfaceCommand = (stdapi_net_config_get_interfaces_V1_4) meterpreter.getCommandManager().getCommand(CommandId.STDAPI_NET_CONFIG_GET_INTERFACES);
         for (Enumeration ifaces = NetworkInterface.getNetworkInterfaces(); ifaces.hasMoreElements(); ) {
             NetworkInterface iface = (NetworkInterface) ifaces.nextElement();
             stdapi_net_config_get_interfaces_V1_4.Address[] addresses = getIfaceCommand.getAddresses(iface);
@@ -28,8 +29,9 @@ public class stdapi_net_config_get_routes_V1_4 extends stdapi_net_config_get_rou
     }
 
     private static byte[] createNetworkMask(int length, int prefixLength) {
-        if (prefixLength > length * 8)
+        if (prefixLength > length * 8) {
             prefixLength = length * 8;
+        }
         byte[] netmask = new byte[length];
         for (int i = 0; i < prefixLength; i++) {
             netmask[i / 8] |= (1 << (7 - (i % 8)));

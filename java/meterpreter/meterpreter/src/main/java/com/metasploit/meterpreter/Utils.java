@@ -17,35 +17,38 @@ public class Utils {
     public static String runCommand(String command) throws IOException {
         Process process = Runtime.getRuntime().exec(command);
         BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder stringBuilder = new StringBuilder();
         String line;
         while ((line = br.readLine()) != null) {
-            stringBuffer.append(line);
-            stringBuffer.append('\n');
+            stringBuilder.append(line);
+            stringBuilder.append('\n');
         }
-        return stringBuffer.toString();
+        return stringBuilder.toString();
     }
 
     public static String getHostname() {
         try {
             String result = InetAddress.getLocalHost().getHostName();
-            if (result != "")
+            if (result.length() != 0) {
                 return result;
-        } catch (UnknownHostException e) { }
+            }
+        } catch (UnknownHostException ignored) { }
 
         String host = System.getenv("COMPUTERNAME");
-        if (host != null)
+        if (host != null) {
             return host;
+        }
 
         host = System.getenv("HOSTNAME");
-        if (host != null)
+        if (host != null) {
             return host;
+        }
 
         return "unknown";
     }
 
 
-    public static String bytesToHex(byte bytes[]) {
+    public static String bytesToHex(byte[] bytes) {
         char[] hexDigits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
         StringBuilder buf = new StringBuilder(bytes.length * 2);
         for (byte aByte : bytes) {

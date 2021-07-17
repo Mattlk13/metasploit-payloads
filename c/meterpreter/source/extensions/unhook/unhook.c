@@ -2,63 +2,81 @@
  * @file unhook.c
  * @brief Entry point and intialisation functionality for the unhook extention.
  */
-#include "../../common/common.h"
+#include "common.h"
+#include "common_metapi.h"
 
-#include "../../DelayLoadMetSrv/DelayLoadMetSrv.h"
-// include the Reflectiveloader() function, we end up linking back to the metsrv.dll's Init function
-// but this doesnt matter as we wont ever call DLL_METASPLOIT_ATTACH as that is only used by the 
-// second stage reflective dll inject payload and not the metsrv itself when it loads extensions.
+#define RDIDLL_NOEXPORT
 #include "../../ReflectiveDLLInjection/dll/src/ReflectiveLoader.c"
 
 #include "unhook.h"
 #include "refresh.h"
 
-DWORD unhook_pe(Remote *remote, Packet *packet);
+// Required so that use of the API works.
+MetApi* met_api = NULL;
 
-// this sets the delay load hook function, see DelayLoadMetSrv.h
-EnableDelayLoadMetSrv();
+DWORD unhook_pe(Remote* remote, Packet* packet)
+{
+	Packet* response = met_api->packet.create_response(packet);
+	DWORD result = ERROR_SUCCESS;
+
+	RefreshPE();
+
+	met_api->packet.add_tlv_uint(response, TLV_TYPE_UNHOOK_RESPONSE, ERROR_SUCCESS);
+	met_api->packet.transmit_response(result, remote, response);
+
+	return ERROR_SUCCESS;
+}
 
 Command customCommands[] =
 {
 	// custom commands go here
-	COMMAND_REQ("unhook_pe", unhook_pe),
-
+	COMMAND_REQ(COMMAND_ID_UNHOOK_PE, unhook_pe),
 	COMMAND_TERMINATOR
 };
 
 /*!
- * @brief Initialize the server extension
+ * @brief Initialize the server extension.
+ * @param api Pointer to the Meterpreter API structure.
+ * @param remote Pointer to the remote instance.
+ * @return Indication of success or failure.
  */
-DWORD __declspec(dllexport) InitServerExtension(Remote *remote)
+DWORD InitServerExtension(MetApi* api, Remote* remote)
 {
-	hMetSrv = remote->met_srv;
+	met_api = api;
 
-	command_register_all(customCommands);
+	met_api->command.register_all(customCommands);
 
 	return ERROR_SUCCESS;
 }
 
 /*!
- * @brief Deinitialize the server extension
+ * @brief Deinitialize the server extension.
+ * @param remote Pointer to the remote instance.
+ * @return Indication of success or failure.
  */
-DWORD __declspec(dllexport) DeinitServerExtension(Remote *remote)
+DWORD DeinitServerExtension(Remote* remote)
 {
-	command_deregister_all(customCommands);
+	met_api->command.deregister_all(customCommands);
 
 	return ERROR_SUCCESS;
 }
 
-
-DWORD unhook_pe(Remote *remote, Packet *packet)
+/*!
+ * @brief Do a stageless initialisation of the extension.
+ * @param ID of the extension that the init was intended for.
+ * @param buffer Pointer to the buffer that contains the init data.
+ * @param bufferSize Size of the \c buffer parameter.
+ * @return Indication of success or failure.
+ */
+DWORD StagelessInit(UINT extensionId, const LPBYTE buffer, DWORD bufferSize)
 {
-	Packet *response = packet_create_response(packet);
-	DWORD result = ERROR_SUCCESS;
-	
-	RefreshPE();
-
-	packet_add_tlv_uint(response, TLV_TYPE_UNHOOK_RESPONSE, ERROR_SUCCESS);
-	packet_transmit_response(result, remote, response);
-
 	return ERROR_SUCCESS;
+}
 
+/*!
+ * @brief Callback for when a command has been added to the meterpreter instance.
+ * @param commandId The ID of the command that has been added.
+ */
+VOID CommandAdded(UINT commandId)
+{
 }

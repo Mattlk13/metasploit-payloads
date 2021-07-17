@@ -52,7 +52,7 @@ public class Payload {
     public static void startContext() {
         try {
             findContext();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 
@@ -76,7 +76,7 @@ public class Payload {
                         if (context != null) {
                             start(context);
                         }
-                    } catch (Exception e) {
+                    } catch (Exception ignored) {
                     }
                 }
             });
@@ -110,7 +110,7 @@ public class Payload {
             return;
         }
         PowerManager.WakeLock wakeLock = null;
-        if ((config.flags & Config.FLAG_WAKELOCK) != 0) {
+        if ((config.flags & Config.FLAG_WAKELOCK) != 0 && context != null) {
             PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
             wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, Payload.class.getSimpleName());
             wakeLock.acquire();
@@ -199,8 +199,9 @@ public class Payload {
         int n = 0;
         while (n < byteLen) {
             int count = in.read(bytes, n, byteLen - n);
-            if (count < 0)
+            if (count < 0) {
                 throw new Exception();
+            }
             n += count;
         }
         return bytes;

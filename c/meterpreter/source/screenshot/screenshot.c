@@ -1,5 +1,6 @@
 #include "screenshot.h"
 #include "bmp2jpeg.h"
+#include "common.h"
 
 // define this as we are going to be injected via RDI
 #define REFLECTIVEDLLINJECTION_VIA_LOADREMOTELIBRARYR
@@ -7,7 +8,7 @@
 // define this as we want to use our own DllMain function
 #define REFLECTIVEDLLINJECTION_CUSTOM_DLLMAIN
 
-// include the Reflectiveloader() function
+#define RDIDLL_NOEXPORT
 #include "../ReflectiveDLLInjection/dll/src/ReflectiveLoader.c"
 
 /*
@@ -87,7 +88,9 @@ DWORD screenshot(int quality, DWORD dwPipeName)
 		os.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
 
 		if (!GetVersionEx(&os))
+		{
 			BREAK_ON_ERROR("[SCREENSHOT] screenshot: GetVersionEx failed")
+		}
 
 		// On NT we cant use SM_CXVIRTUALSCREEN/SM_CYVIRTUALSCREEN.
 		if (os.dwMajorVersion <= 4)
@@ -101,12 +104,16 @@ DWORD screenshot(int quality, DWORD dwPipeName)
 		if (!hWindowStation)
 		{
 			if (RevertToSelf())
+			{
 				hWindowStation = OpenWindowStationA("WinSta0", FALSE, WINSTA_ALL_ACCESS);
+			}
 		}
 
 		// if we cant open the defaut input station we wont be able to take a screenshot
 		if (!hWindowStation)
+		{
 			BREAK_WITH_ERROR("[SCREENSHOT] screenshot: Couldnt get the WinSta0 Window Station", ERROR_INVALID_HANDLE);
+		}
 
 		// get the current process's window station so we can restore it later on.
 		hOrigWindowStation = GetProcessWindowStation();

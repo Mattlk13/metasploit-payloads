@@ -1,5 +1,7 @@
 #include "precomp.h"
 
+#include "common_metapi.h"
+
 // Note: both connection_entry and connection_table were moved from
 // common.h into here because:
 // 1) connection_table contains a zero-length array which causes all C++
@@ -101,6 +103,7 @@ char *tcp_connection_states[] = {
    "", "CLOSED", "LISTEN", "SYN_SENT", "SYN_RECV", "ESTABLISHED", "FIN_WAIT1", "FIN_WAIT2", "CLOSE_WAIT",
    "CLOSING", "LAST_ACK", "TIME_WAIT", "DELETE_TCB", "UNKNOWN" };
 
+#ifndef __MINGW32__
 typedef struct _MIB_TCP6ROW_OWNER_MODULE {
   UCHAR         ucLocalAddr[16];
   DWORD         dwLocalScopeId;
@@ -139,11 +142,12 @@ typedef struct {
   MIB_UDP6ROW_OWNER_MODULE table[ANY_SIZE];
 } MIB_UDP6TABLE_OWNER_MODULE, *PMIB_UDP6TABLE_OWNER_MODULE;
 
+#endif
+
 typedef DWORD (WINAPI * ptr_GetExtendedTcpTable)(PVOID, PDWORD pdwSize, BOOL bOrder, ULONG ulAf,TCP_TABLE_CLASS TableClass,
 ULONG Reserved);
 typedef DWORD (WINAPI * ptr_GetExtendedUdpTable)(PVOID, PDWORD pdwSize, BOOL bOrder, ULONG ulAf,TCP_TABLE_CLASS TableClass,
 ULONG Reserved);
-
 
 /*
  * retrieve tcp table for win 2000 and NT4 ?
@@ -564,12 +568,14 @@ DWORD get_connection_table(Remote *remote, Packet *response)
 		connection[6].header.length    = (DWORD)strlen((char*)current_connection->program_name) + 1;
 		connection[6].buffer           = (PUCHAR)(current_connection->program_name);
 
-		packet_add_tlv_group(response, TLV_TYPE_NETSTAT_ENTRY, connection, 7);
+		met_api->packet.add_tlv_group(response, TLV_TYPE_NETSTAT_ENTRY, connection, 7);
 	}
 	dprintf("sent %d connections", table_connection->entries);
 
 	if (table_connection)
+	{
 		free(table_connection);
+	}
 
 	return ERROR_SUCCESS;
 }
@@ -579,12 +585,12 @@ DWORD get_connection_table(Remote *remote, Packet *response)
  */
 DWORD request_net_config_get_netstat(Remote *remote, Packet *packet)
 {
-	Packet *response = packet_create_response(packet);
+	Packet *response = met_api->packet.create_response(packet);
 	DWORD result;
 
 	result = get_connection_table(remote, response);
 
-	packet_transmit_response(result, remote, response);
+	met_api->packet.transmit_response(result, remote, response);
 
 	return ERROR_SUCCESS;
 }
