@@ -554,13 +554,13 @@ docker-ext-winpmem-x64:
 	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-winpmem-x64
 
 docker-ext-kiwi:
-	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-kiwi
+	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-kiwi
 
 docker-ext-kiwi-x86:
-	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-kiwi-x86
+	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-kiwi-x86
 
 docker-ext-kiwi-x64:
-	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-kiwi-x64
+	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-kiwi-x64
 
 docker-ext-peinjector:
 	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-peinjector
