@@ -8,9 +8,14 @@
 #define InitAppInstance() { if( hAppInstance == NULL ) hAppInstance = GetModuleHandle( NULL ); }
 
 
+#ifndef NO_REFLECTIVE_LOADER
 #define REFLECTIVEDLLINJECTION_CUSTOM_DLLMAIN
 #define RDIDLL_NOEXPORT
 #include "../ReflectiveDLLInjection/dll/src/ReflectiveLoader.c"
+#else
+HINSTANCE hAppInstance = NULL;
+#include "../ReflectiveDLLInjection/dll/src/DirectSyscall.c"
+#endif
 #include "../ReflectiveDLLInjection/inject/src/GetProcAddressR.c"
 #include "../ReflectiveDLLInjection/inject/src/LoadLibraryR.c"
 

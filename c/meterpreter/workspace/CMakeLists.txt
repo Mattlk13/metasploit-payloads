@@ -286,6 +286,8 @@ if(BUILD_METSRV)
     set(MET_SERVERS metsrv)
 endif()
 
+option(EXCLUDE_REFLECTIVE_LOADER "Exclude the reflective loader from metsrv" OFF)
+
 set(MET_RDI_ASM ReflectiveDLLInjection)
 
 set(
