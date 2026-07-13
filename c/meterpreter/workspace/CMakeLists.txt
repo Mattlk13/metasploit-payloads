@@ -286,7 +286,13 @@ if(BUILD_METSRV)
     set(MET_SERVERS metsrv)
 endif()
 
-option(EXCLUDE_REFLECTIVE_LOADER "Exclude the reflective loader from metsrv" OFF)
+option(EXCLUDE_REFLECTIVE_LOADER "Exclude the reflective loader from metsrv and extensions" OFF)
+
+if(EXCLUDE_REFLECTIVE_LOADER)
+    set(EXTENSION_DEF_FILE ${MOD_DEF_DIR}/extension_no_rdi.def)
+else()
+    set(EXTENSION_DEF_FILE ${MOD_DEF_DIR}/extension.def)
+endif()
 
 set(MET_RDI_ASM ReflectiveDLLInjection)
 

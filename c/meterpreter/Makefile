@@ -419,76 +419,76 @@ docker-metsrv-x64:
 	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-metsrv-x64
 
 docker-ext-stdapi:
-	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi
+	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi
 
 docker-ext-stdapi-x86:
-	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-x86
+	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-x86
 
 docker-ext-stdapi-x64:
-	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-x64
+	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-x64
 
 docker-ext-stdapi-audio:
-	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-audio
+	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-audio
 
 docker-ext-stdapi-audio-x86:
-	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-audio-x86
+	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-audio-x86
 
 docker-ext-stdapi-audio-x64:
-	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-audio-x64
+	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-audio-x64
 
 docker-ext-stdapi-fs:
-	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-fs
+	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-fs
 
 docker-ext-stdapi-fs-x86:
-	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-fs-x86
+	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-fs-x86
 
 docker-ext-stdapi-fs-x64:
-	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-fs-x64
+	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-fs-x64
 
 docker-ext-stdapi-net:
-	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-net
+	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-net
 
 docker-ext-stdapi-net-x86:
-	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-net-x86
+	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-net-x86
 
 docker-ext-stdapi-net-x64:
-	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-net-x64
+	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-net-x64
 
 docker-ext-stdapi-railgun:
-	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-railgun
+	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-railgun
 
 docker-ext-stdapi-railgun-x86:
-	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-railgun-x86
+	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-railgun-x86
 
 docker-ext-stdapi-railgun-x64:
-	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-railgun-x64
+	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-railgun-x64
 
 docker-ext-stdapi-sys:
-	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-sys
+	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-sys
 
 docker-ext-stdapi-sys-x86:
-	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-sys-x86
+	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-sys-x86
 
 docker-ext-stdapi-sys-x64:
-	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-sys-x64
+	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-sys-x64
 
 docker-ext-stdapi-ui:
-	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-ui
+	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-ui
 
 docker-ext-stdapi-ui-x86:
-	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-ui-x86
+	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-ui-x86
 
 docker-ext-stdapi-ui-x64:
-	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-ui-x64
+	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-ui-x64
 
 docker-ext-stdapi-webcam:
-	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-webcam
+	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-webcam
 
 docker-ext-stdapi-webcam-x86:
-	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-webcam-x86
+	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-webcam-x86
 
 docker-ext-stdapi-webcam-x64:
-	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-webcam-x64
+	@docker run -u $(ID):$(ID) -it -v ${PWD}:/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-stdapi-webcam-x64
 
 docker-ext-priv:
 	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-priv
