@@ -500,13 +500,13 @@ docker-ext-priv-x64:
 	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-priv-x64
 
 docker-ext-extapi:
-	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-extapi
+	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-extapi
 
 docker-ext-extapi-x86:
-	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-extapi-x86
+	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-extapi-x86
 
 docker-ext-extapi-x64:
-	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-extapi-x64
+	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-extapi-x64
 
 docker-ext-incognito:
 	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-incognito
