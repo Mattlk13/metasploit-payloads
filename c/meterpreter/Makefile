@@ -527,13 +527,13 @@ docker-ext-espia-x64:
 	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-espia-x64
 
 docker-ext-lanattacks:
-	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-lanattacks
+	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-lanattacks
 
 docker-ext-lanattacks-x86:
-	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-lanattacks-x86
+	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-lanattacks-x86
 
 docker-ext-lanattacks-x64:
-	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-lanattacks-x64
+	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-lanattacks-x64
 
 docker-ext-unhook:
 	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-unhook
