@@ -545,13 +545,13 @@ docker-ext-unhook-x64:
 	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-unhook-x64
 
 docker-ext-winpmem:
-	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-winpmem
+	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-winpmem
 
 docker-ext-winpmem-x86:
-	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-winpmem-x86
+	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-winpmem-x86
 
 docker-ext-winpmem-x64:
-	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-winpmem-x64
+	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter -e EXCLUDE_REFLECTIVE_LOADER --rm $(DOCKER_CONTAINER) make meterpreter-ext-winpmem-x64
 
 docker-ext-kiwi:
 	@docker run -u $(ID):$(ID) -it -v "${PWD}":/meterpreter -w /meterpreter --rm $(DOCKER_CONTAINER) make meterpreter-ext-kiwi
